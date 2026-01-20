@@ -1,34 +1,46 @@
 {% extends "base.html" %}
 
-{% block title %}{{ query }} - Search Results{% endblock %}
+{% block title %}SEARCH-RESULTS(1){% endblock %}
 
 {% block content %}
-<div class="search-container mt-4">
-    <div class="mb-4">
-        <a href="/" class="text-decoration-none mb-3 d-inline-block">&larr; Back to Home</a>
-        <form action="/search" method="get" class="d-flex">
-            <input type="text" class="form-control me-2" name="q" value="{{ query }}" required>
-            <button class="btn btn-outline-primary" type="submit">Search</button>
-        </form>
-    </div>
+<div class="section-title">NAME</div>
+<div class="indented">
+    search-results - output from the search query "{{ query }}"
+</div>
 
-    <p class="text-muted mb-4">Found {{ results|length }} result(s) for "<strong>{{ query }}</strong>"</p>
+<div class="section-title">SYNOPSIS</div>
+<div class="indented">
+    <a href="/">&lt;&lt; Back to Search</a>
+    <br><br>
+    <form action="/search" method="get">
+        <span style="color: #00ff00;">user@search:~$</span> search <input type="text" name="q" value="{{ query }}">
+        <button type="submit">Refine</button>
+    </form>
+</div>
 
+<div class="section-title">RESULTS</div>
+<div class="indented">
+    <p>Found {{ results|length }} result(s).</p>
     {% if results %}
         {% for doc in results %}
-        <div class="card result-card p-3">
-            <div class="card-body p-0">
-                <div class="result-url">Document ID: {{ doc.id }}</div>
-                <h5 class="card-title"><a href="#" class="result-link">{{ doc.title }}</a></h5>
-                <p class="card-text text-secondary">{{ doc.content[:200] }}...</p>
-                <span class="badge bg-light text-dark border score-badge">Relevance: {{ doc.score }}</span>
+        <div style="margin-bottom: 20px;">
+            <b>{{ doc.title }}</b>
+            <div style="margin-left: 20px;">
+                {{ doc.content[:300] }}...
+                <br>
+                <span style="color: #888;">[Relevance: {{ doc.score }}] [ID: {{ doc.id }}]</span>
             </div>
         </div>
         {% endfor %}
     {% else %}
-        <div class="alert alert-warning" role="alert">
-            No results found. Try different keywords.
+        <div style="margin-bottom: 20px;">
+            No results found.
         </div>
     {% endif %}
+</div>
+
+<div class="section-title">SEE ALSO</div>
+<div class="indented">
+    <a href="/">search(1)</a>
 </div>
 {% endblock %}

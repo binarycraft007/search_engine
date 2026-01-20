@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 
-{% block title %}Simple Search Engine{% endblock %}
+{% block title %}SEARCH(1){% endblock %}
 
 {% block content %}
-<div class="row min-vh-100 align-items-center" style="margin-top: -5rem;">
-    <div class="col search-container text-center">
-        <h1 class="display-4 mb-4 fw-bold text-primary">Simple Search</h1>
-        <form action="/search" method="get">
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control rounded-pill" name="q" placeholder="What are you looking for?" aria-label="Search" required autofocus style="padding-left: 1.5rem;">
-                <button class="btn btn-primary rounded-pill ms-2 px-4" type="submit">Search</button>
-            </div>
-        </form>
-    </div>
+<div class="section-title">NAME</div>
+<div class="indented">
+    search - a simple command line search engine interface
+</div>
+
+<div class="section-title">SYNOPSIS</div>
+<div class="indented">
+    <form action="/search" method="get">
+        <span style="color: #00ff00;">user@search:~$</span> search <input type="text" name="q" autofocus autocomplete="off">
+        <button type="submit">ENTER</button>
+    </form>
+</div>
+
+<div class="section-title">DESCRIPTION</div>
+<div class="indented">
+    <b>search</b> is a utility to find documents within the local database. 
+    Enter your query in the synopsis above and press ENTER to view results.
 </div>
 {% endblock %}
