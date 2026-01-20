@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ query }} - Search Results{% endblock %}
+
+{% block content %}
+<div class="search-container mt-4">
+    <div class="mb-4">
+        <a href="/" class="text-decoration-none mb-3 d-inline-block">&larr; Back to Home</a>
+        <form action="/search" method="get" class="d-flex">
+            <input type="text" class="form-control me-2" name="q" value="{{ query }}" required>
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
+    </div>
+
+    <p class="text-muted mb-4">Found {{ results|length }} result(s) for "<strong>{{ query }}</strong>"</p>
+
+    {% if results %}
+        {% for doc in results %}
+        <div class="card result-card p-3">
+            <div class="card-body p-0">
+                <div class="result-url">Document ID: {{ doc.id }}</div>
+                <h5 class="card-title"><a href="#" class="result-link">{{ doc.title }}</a></h5>
+                <p class="card-text text-secondary">{{ doc.content[:200] }}...</p>
+                <span class="badge bg-light text-dark border score-badge">Relevance: {{ doc.score }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            No results found. Try different keywords.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

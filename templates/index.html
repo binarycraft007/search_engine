@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Simple Search Engine{% endblock %}
+
+{% block content %}
+<div class="row min-vh-100 align-items-center" style="margin-top: -5rem;">
+    <div class="col search-container text-center">
+        <h1 class="display-4 mb-4 fw-bold text-primary">Simple Search</h1>
+        <form action="/search" method="get">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control rounded-pill" name="q" placeholder="What are you looking for?" aria-label="Search" required autofocus style="padding-left: 1.5rem;">
+                <button class="btn btn-primary rounded-pill ms-2 px-4" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
